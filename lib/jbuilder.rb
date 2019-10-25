@@ -10,14 +10,11 @@ class Jbuilder
   @@ignore_nil    = false
 
   def initialize(options = {})
-    puts "INITIALIZE"
     @attributes = {}
 
     @key_formatter = options.fetch(:key_formatter){ @@key_formatter ? @@key_formatter.clone : nil}
     @ignore_nil = options.fetch(:ignore_nil, @@ignore_nil)
-    puts "RIGHT BEFORE block_given?"
     yield self if ::Kernel.block_given?
-    puts "AFTER block_given?"
   end
 
   # Yields a builder and automatically turns the result into a JSON string
